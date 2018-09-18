@@ -10,6 +10,7 @@ public class main {
 	static int c = 0;
 	static Scanner sc = new Scanner(System.in);
     static boolean start;
+    static boolean valido;
 
 	public static void main(String[] args) {
 
@@ -18,6 +19,9 @@ public class main {
         do{
             try{
                 menuInicial();
+                System.out.println("Obrigado por usar nosso sistema :)");
+                valido = false;
+                start = false;
             } catch (Exception e){
                 System.out.println(" \n" + e);
 
@@ -35,7 +39,7 @@ public class main {
 	}
 
 	public static void menuInicial(){
-        boolean valido = true;
+        valido = true;
 
         System.out.println();
         System.out.println("-------- Preencha a Matriz antes de acessar as opcoes: -------");
@@ -78,9 +82,7 @@ public class main {
                         menuInicial();
 
                     default:
-                        System.out.println("Obrigado por usar nosso sistema :)");
-                        valido = false;
-                        start = false;
+                        return;
 
                 }
 
