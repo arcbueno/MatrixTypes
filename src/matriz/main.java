@@ -15,57 +15,64 @@ public class main {
         boolean start = true;
 
         while(start){
-            boolean valido = true;
 
-            System.out.println();
-            System.out.println("-------- Preencha a Matriz antes de acessar as opcoeses: -------");
-            System.out.println(" ");
-            System.out.print("Insira o numero de linhas ->");
-            l = sc.nextInt();
-            System.out.print("Insira o numero de colunas ->");
-            c = sc.nextInt();
+            try{
 
-            if(l != 0 && c != 0){
+                boolean valido = true;
+
+                System.out.println();
+                System.out.println("-------- Preencha a Matriz antes de acessar as opcoeses: -------");
                 System.out.println(" ");
-                System.out.println("    *Sua matriz possui "+ l +" linhas e " + c + " colunas !*");
-                System.out.println(" ");
-                a = new int[l][c];
-                //System.out.println(a.length);
+                System.out.print("Insira o numero de linhas ->");
+                l = sc.nextInt();
+                System.out.print("Insira o numero de colunas ->");
+                c = sc.nextInt();
+
+                if(l != 0 && c != 0){
+                    System.out.println(" ");
+                    System.out.println("    *Sua matriz possui "+ l +" linhas e " + c + " colunas !*");
+                    System.out.println(" ");
+                    a = new int[l][c];
+                    //System.out.println(a.length);
 
 
-                for (int i = 0; i < l; i++) {
+                    for (int i = 0; i < l; i++) {
 
-                    for (int j = 0; j < c; j++) {
-                        System.out.print("Insira o valor na posicao " + i + " da matriz -> ");
-                        a[i][j] = sc.nextInt();
+                        for (int j = 0; j < c; j++) {
+                            System.out.print("Insira o valor na posicao " + i + " da matriz -> ");
+                            a[i][j] = sc.nextInt();
+                        }
                     }
+
+                    do {
+                        menuPrincipal();
+
+                        switch (validar()) {
+                            case 1:
+
+                                identificarMatriz(a);
+                                System.out.println(" ");
+                                break;
+                            case 2:
+                                imprimirMatriz(a);
+
+                                break;
+
+                            default:
+                                System.out.println("Obrigado por usar nosso sistema :)");
+                                valido = false;
+                                start = false;
+
+                        }
+
+
+                    } while (valido);
+                } else{
+                    System.out.println("Por favor, digite numeros validos");
                 }
-
-                do {
-                    menuPrincipal();
-
-                    switch (validar()) {
-                        case 1:
-
-                            identificarMatriz(a);
-                            System.out.println(" ");
-                            break;
-                        case 2:
-                            imprimirMatriz(a);
-
-                            break;
-
-                        default:
-                            System.out.println("Obrigado por usar nosso sistema :)");
-                            valido = false;
-                            start = false;
-
-                    }
-
-
-                } while (valido);
-            } else{
-                System.out.println("Por favor, digite numeros validos");
+            } catch (Exception e){
+                System.out.println(" \n" + e);
+                start = false;
             }
         }
 
