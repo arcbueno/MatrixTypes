@@ -9,72 +9,20 @@ public class main {
 	static int l = 0;
 	static int c = 0;
 	static Scanner sc = new Scanner(System.in);
+    static boolean start;
 
 	public static void main(String[] args) {
 
-        boolean start = true;
+        start = true;
 
-        while(start){
-
+        do{
             try{
-
-                boolean valido = true;
-
-                System.out.println();
-                System.out.println("-------- Preencha a Matriz antes de acessar as opcoeses: -------");
-                System.out.println(" ");
-                System.out.print("Insira o numero de linhas ->");
-                l = sc.nextInt();
-                System.out.print("Insira o numero de colunas ->");
-                c = sc.nextInt();
-
-                if(l != 0 && c != 0){
-                    System.out.println(" ");
-                    System.out.println("    *Sua matriz possui "+ l +" linhas e " + c + " colunas !*");
-                    System.out.println(" ");
-                    a = new int[l][c];
-                    //System.out.println(a.length);
-
-
-                    for (int i = 0; i < l; i++) {
-
-                        for (int j = 0; j < c; j++) {
-                            System.out.print("Insira o valor na posicao " + i + " da matriz -> ");
-                            a[i][j] = sc.nextInt();
-                        }
-                    }
-
-                    do {
-                        menuPrincipal();
-
-                        switch (validar()) {
-                            case 1:
-
-                                identificarMatriz(a);
-                                System.out.println(" ");
-                                break;
-                            case 2:
-                                imprimirMatriz(a);
-
-                                break;
-
-                            default:
-                                System.out.println("Obrigado por usar nosso sistema :)");
-                                valido = false;
-                                start = false;
-
-                        }
-
-
-                    } while (valido);
-                } else{
-                    System.out.println("Por favor, digite numeros validos");
-                }
+                menuInicial();
             } catch (Exception e){
                 System.out.println(" \n" + e);
-                start = false;
+
             }
-        }
+        }while (start);
 
 	}
 
@@ -82,8 +30,66 @@ public class main {
 		System.out.println(" ");
 		System.out.println("----- Seja bem-vindo! -----");
 		System.out.println("Escolha a opcao que voce deseja:\n 1- Identificar Matriz\n 2- Imprimir Matriz");
+        System.out.println(" 3- Voltar ao menu inicial");
         System.out.println("Caso deseja sair do sistema, digite qualquer outra tecla");
 	}
+
+	public static void menuInicial(){
+        boolean valido = true;
+
+        System.out.println();
+        System.out.println("-------- Preencha a Matriz antes de acessar as opcoes: -------");
+        System.out.println(" ");
+        System.out.print("Insira o numero de linhas ->");
+        l = sc.nextInt();
+        System.out.print("Insira o numero de colunas ->");
+        c = sc.nextInt();
+
+        if(l != 0 && c != 0){
+            System.out.println(" ");
+            System.out.println("    *Sua matriz possui "+ l +" linhas e " + c + " colunas !*");
+            System.out.println(" ");
+            a = new int[l][c];
+            //System.out.println(a.length);
+
+
+            for (int i = 0; i < l; i++) {
+
+                for (int j = 0; j < c; j++) {
+                    System.out.print("Insira o valor na posicao " + i + " da matriz -> ");
+                    a[i][j] = sc.nextInt();
+                }
+            }
+
+            do {
+                menuPrincipal();
+
+                switch (validar()) {
+                    case 1:
+
+                        identificarMatriz(a);
+                        System.out.println(" ");
+                        break;
+                    case 2:
+                        imprimirMatriz(a);
+
+                        break;
+                    case 3:
+                        menuInicial();
+
+                    default:
+                        System.out.println("Obrigado por usar nosso sistema :)");
+                        valido = false;
+                        start = false;
+
+                }
+
+
+            } while (valido);
+        } else{
+            System.out.println("Por favor, digite numeros validos");
+        }
+    }
 
 	public static int validar() {
 		Scanner sc = new Scanner(System.in);
